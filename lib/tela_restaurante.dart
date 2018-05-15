@@ -3,7 +3,7 @@ import 'package:app_restaurante/zoom_scaffold.dart';
 
 
 // Criando nova tela no app
-final Tela restauranteTela = new Tela(
+final Tela restaurantScreen = new Tela(
   title: 'RESTAURANTES',
   background: new DecorationImage(
     image: new AssetImage('assets/wood_bk.jpg'),

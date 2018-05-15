@@ -1,4 +1,4 @@
-//import 'package:app_restaurante/tela_nova.dart';
+import 'package:app_restaurante/tela_nova.dart';
 //import 'package:app_restaurante/menu_screen.dart';
 import 'package:app_restaurante/menu_screen.dart';
 import 'package:app_restaurante/tela_restaurante.dart';
@@ -26,13 +26,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var telaAtiva = restauranteTela; //telaNova
+
+  final menu = new Menu (
+    items: [
+      new MenuItem (
+        id: 'restaurant',
+        title: 'MAIS VISTOS',
+      ),
+      new MenuItem(
+        id: 'other1',
+        title: 'MELHORES',
+      ),
+      new MenuItem (
+        id: 'other2',
+        title: 'QUER AJUDA?',
+      ),
+      new MenuItem(
+        id: 'other3',
+        title: 'CONFIGURAÇÕES',
+      ),
+    ],
+  );
+
+  var selectedMenuItemId = 'restaurant';
+  var activeScreen = restaurantScreen; //telaNova
 
   @override
   Widget build(BuildContext context) {
     return new ZoomScaffold(
-      menuScreen: new MenuScreen(),
-      contentScreen: telaAtiva,
+      menuScreen: new MenuScreen(
+        menu : menu,
+        selectedItemId: selectedMenuItemId,
+        onMenuItemSelected: (String itemId){
+          selectedMenuItemId = itemId;
+          if (itemId == 'restaurant' ) {
+            setState(() => activeScreen = restaurantScreen);
+          } else {
+            setState(() => activeScreen = telaNova);
+          }
+        },
+      ),
+      contentScreen: activeScreen,
     );
   }
 }
