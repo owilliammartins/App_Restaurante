@@ -1,6 +1,8 @@
 //import 'package:app_restaurante/tela_nova.dart';
+//import 'package:app_restaurante/menu_screen.dart';
 import 'package:app_restaurante/menu_screen.dart';
 import 'package:app_restaurante/tela_restaurante.dart';
+import 'package:app_restaurante/zoom_scaffold.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
@@ -24,47 +26,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var telaAtiva = restauranteTela; //telaNova;
-
-  
-
-  createContentDisplay() {
-    return new Container(
-      decoration: new BoxDecoration(
-        image: telaAtiva.background,
-      ),
-      child: new Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: new AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: new IconButton(
-            icon: new Icon(Icons.menu),
-            onPressed: () {
-              //TODO:
-            },
-          ),
-          title: new Text(
-            telaAtiva.title,
-            style: new TextStyle(
-              fontFamily: 'bebas-neue',
-              fontSize: 25.0,
-            ),
-          ),
-        ),
-        body: telaAtiva.contentBuilder(context),
-      ),
-    );
-  }
+  var telaAtiva = restauranteTela; //telaNova
 
   @override
   Widget build(BuildContext context) {
-    return new Stack(
-      children: [
-        new MenuScreen(),
-//        createContentDisplay()
-      ],
+    return new ZoomScaffold(
+      menuScreen: new MenuScreen(),
+      contentScreen: telaAtiva,
     );
   }
 }
-
